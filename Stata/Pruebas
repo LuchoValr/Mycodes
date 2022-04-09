@@ -1,1 +1,20 @@
+clear
+set obs 1000
+gen u=rnormal()
+gen z=rnormal()
+gen x=z-u
+gen y= 5+5*x+u
+forvalues i = 1(1)10 {
+		replace u=rnormal()
+		replace z=rnormal()
+		replace x=z-u
+		replace y=5+5*x+u
+		reg y x
+		local matrix A=e(b)
+}
 
+foreach i of local matrix A {
+	foreach j of local matrix A {
+			matrix B=A
+	}
+}
